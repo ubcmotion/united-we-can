@@ -5,9 +5,11 @@ module.exports = {
     project: "./apps/web/web/tsconfig.json",
     ecmaVersion: "latest",
     allowDefaultProject: true,
-    sourceType: "module",
-    tsConfigRootDir: ".",
     projectService: true,
+    tsconfigRootDir: __dirname,
+    projectFolderIgnoreList: [
+      "**dist**",
+    ],
   },
   rules: {
     semi: ["error", "never"],

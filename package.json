@@ -1,15 +1,15 @@
 {
-    "name": "my-project",
+    "name": "united-we-can",
     "version": "1.0.0",
     "workspaces": [
         "apps/*"
     ],
     "scripts": {
-        "lint:web": "eslint --config apps/web/infra/eslint.config.js 'apps/web/**/*.{js,ts,tsx}'",
-        "format:web": "prettier --write 'apps/web/**/*.{js,jsx,ts,tsx,json,css,md}'"
+        "lint:web": "eslint --config apps/web/infra/eslint.config.js 'apps/web/web/*.{js,ts,tsx}'",
+        "format:web": "prettier --config apps/web/infra/.prettierrc.json --write 'apps/web/web/*.{js,jsx,ts,tsx,json,css,md}'"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/eslint-plugin": "^8.17.0",
         "@typescript-eslint/parser": "^8.17.0",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
