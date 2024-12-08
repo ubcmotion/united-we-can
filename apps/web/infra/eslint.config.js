@@ -7,7 +7,10 @@ module.exports = {
     allowDefaultProject: true,
     sourceType: "module",
     tsConfigRootDir: ".",
-    projectService: true,
+    projectService: {
+      allowDefaultProject: ["./*.ts"],
+      defaultProject: "./apps/web/web/tsconfig.json",
+    },
   },
   rules: {
     semi: ["error", "never"],
@@ -17,6 +20,7 @@ module.exports = {
     "arrow-parens": ["error", "as-needed"],
     "object-curly-spacing": ["error", "always"],
     "no-restricted-imports": ["error", { patterns: ["./*", "../*"] }],
+    "no-html-link-for-pages": "off",
     "import/order": [
       "error",
       {
