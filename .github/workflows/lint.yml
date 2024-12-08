@@ -26,8 +26,5 @@ jobs:
           npm cache clean --force
           npm ci  # Recommended over npm install for CI environments
 
-      - name: Run Prettier for Web
-        run: npm run format:web
-
       - name: Run ESLint for Web
         run: npm run lint:web

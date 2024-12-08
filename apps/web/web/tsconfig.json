@@ -22,6 +22,10 @@
       "@/*": ["./src/*"]
     }
   },
+<<<<<<< HEAD
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "apps/web/infra/eslint.config.js", "apps/web/**/*"],
+=======
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../infra/eslint.config.js"],
+>>>>>>> parent of 0fefe01 (fix: root package.json correction)
   "exclude": ["node_modules"]
 }
