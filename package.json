@@ -1,5 +1,5 @@
 {
-    "name": "my-project",
+    "name": "united-we-can",
     "version": "1.0.0",
     "workspaces": [
         "apps/*"
@@ -16,9 +16,5 @@
         "eslint-plugin-prettier": "^3.0.0",
         "eslint-plugin-react": "^7.0.0",
         "prettier": "^2.0.0"
-    },
-    "dependencies": {
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0"
     }
 }
