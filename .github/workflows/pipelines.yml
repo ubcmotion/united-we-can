@@ -55,13 +55,11 @@ jobs:
       - name: Run Tests
         run: |
             cd apps/web/web
-            npm test
+            npm test -- --coverage
 
-      - name: Upload Coverage Report
-        if: always()
+      - name: Upload coverage to GitHub Actions
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: coverage/
-
+          path: apps/web/web/coverage
 

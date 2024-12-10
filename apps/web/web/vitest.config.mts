@@ -9,7 +9,11 @@ export default defineConfig({
         }),
         react(),
       ],
-  test: {
-    environment: 'jsdom',
-  },
-})
+      test: {
+        environment: 'jsdom',
+        coverage: {
+          reporter: ['text', 'html', 'lcov'], 
+          reportsDirectory: './coverage',
+        },
+      },
+    })
