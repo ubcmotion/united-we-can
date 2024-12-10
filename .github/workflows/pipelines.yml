@@ -1,4 +1,4 @@
-name: Tests
+name: Code Quality
 
 on:
   push:
@@ -9,6 +9,30 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js # required by Prettier and ESLint 
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm cache clean --force
+          npm install
+          cd apps/web/web
+          npm install
+  
+      - name: Run Prettier for Web
+        run: npm run format:web
+
+      - name: Run ESLint for Web
+        run: npm run lint:web
   test:
     runs-on: ubuntu-latest
     steps:
@@ -29,10 +53,9 @@ jobs:
           npm install
 
       - name: Run Tests
-        run: | 
+        run: |
+            cd apps/web/web
             npm test
-            cd ../../..
-
 
       - name: Upload Coverage Report
         if: always()
@@ -40,3 +63,5 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
+
+
