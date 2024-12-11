@@ -6,11 +6,13 @@
     ],
     "scripts": {
         "lint:web": "eslint --config apps/web/infra/eslint.config.js 'apps/web/web/*.{js,ts,tsx}'",
-        "format:web": "prettier --config apps/web/infra/.prettierrc.json --write 'apps/web/web/*.{js,jsx,ts,tsx,json,css,md}'"
+        "format:web": "prettier --config apps/web/infra/.prettierrc.json --write 'apps/web/web/*.{js,jsx,ts,tsx,json,css,md}'",
+        "lint:mobile": "eslint --config apps/mobile/infra/.eslintrc.json apps/mobile/mobile --ext .ts,.tsx,.js,.jsx",
+        "format:mobile": "prettier --config apps/mobile/infra/.prettierrc.json --write apps/mobile/mobile --ext .ts,.tsx,.js,.jsx"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^8.17.0",
-        "@typescript-eslint/parser": "^8.17.0",
+        "@typescript-eslint/eslint-plugin": "^8.18.0",
+        "@typescript-eslint/parser": "^8.18.0",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.31.0",
