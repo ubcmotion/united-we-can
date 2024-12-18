@@ -39,6 +39,18 @@ The pickupRequests collection stores pickup requests from customers. Each docume
   - `"Completed"`
 - **`notes`** (String, optional): Additional notes about the pickup request.
 
+
+### 3. `customers` Collection
+
+The customers collection stores customer's information. Each document represents a customer.
+
+#### Fields:
+- **`name`** (String): The full name of the customer. 
+- **`email`** (String): The email address of the customer. 
+- **`address`** (String): The physical address of the customer. 
+- **`role`** (String): The role of the user, defaults to Customer.
+>>>>>>> 977e49d (chore: add documentation for the customers collection)
+
 #### Example Documents
 
 ```json
@@ -54,4 +66,9 @@ The pickupRequests collection stores pickup requests from customers. Each docume
   "createdAt": "2024-12-10T10:00:00Z",  // Timestamp of when the request was created
   "status": "Completed",
   "notes":
+
+  "name": "ABC Hotel", 
+  "email": "abchotel@gmail.com",
+  "address": "123 Robson Street, Vancouver, BC",
+  "role": "Customer"
 }
