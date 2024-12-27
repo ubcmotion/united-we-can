@@ -1,0 +1,28 @@
+name: Deploy to Firebase Hosting on merge
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Install and build Next.js app
+      - name: Install Next.js dependencies
+        working-directory: ./apps/web/web
+        run: npm ci
+        
+      - name: Build Next.js app
+        working-directory: ./apps/web/web
+        run: npm run build
+        
+      # Deploy to Firebase
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_UNITED_WE_CAN_67C72 }}
+          channelId: live
+          projectId: united-we-can-67c72
+          entryPoint: ./firebase
