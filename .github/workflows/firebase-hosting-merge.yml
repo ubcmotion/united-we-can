@@ -26,3 +26,6 @@ jobs:
           channelId: live
           projectId: united-we-can-67c72
           entryPoint: ./firebase
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
+  
