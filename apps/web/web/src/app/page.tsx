@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import TodaysPickups from './todays-pickups'
  
+
 export default function Page() {
   return (
     <div>
