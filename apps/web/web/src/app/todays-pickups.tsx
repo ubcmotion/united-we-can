@@ -56,7 +56,7 @@ export default function TodaysPickups() {
   return (
     <MainContainer>
       <TopContainer>
-        <Header>Today's Pickups</Header>
+        <Header>Today&apos;s Pickups</Header>
         <DaySelector>
           <div>Sun</div>
           <div>Mon</div>
