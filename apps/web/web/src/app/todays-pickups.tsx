@@ -1,63 +1,66 @@
-'use client'
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
 
-const MainContainer = styled.div`
-  background-color: #F5F5F5;
-  padding: 30px;
-  border-radius: 20px;
-  font-family: 'Inter', sans-serif;
-  width: 1100px;
-`;
+interface Styles {
+  mainContainer: React.CSSProperties;
+  topContainer: React.CSSProperties;
+  header: React.CSSProperties;
+  daySelector: React.CSSProperties;
+  scrollableDiv: React.CSSProperties;
+  record: React.CSSProperties;
+}
 
-const TopContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 25px;
-`;
-
-const Header = styled.h1`
-  font-size: 34px;
-`;
-
-const DaySelector = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  height: 30px;
-  border: 1px solid #000;
-  border-radius: 20px;
-  padding: 6px 15px;
-  align-items: center;
-  width: 519px;
-  background-color: #FFFFFF;
-  font-size: 18px;
-`;
-
-const ScrollableDiv = styled.div`
-  background-color: #FFFFFF;
-  padding: 20px;
-  border-radius: 20px;
-  height: 300px;
-  overflow-y: auto;
-`;
-
-const Record = styled.div`
-  font-size: 18px;
-  justify-content: space-between;
-  gap: 10px;
-  display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px
-`;
-
+const styles: Styles = {
+  mainContainer: {
+    backgroundColor: '#F5F5F5',
+    padding: '30px',
+    borderRadius: '20px',
+    fontFamily: "'Inter', sans-serif",
+    width: '1100px',
+  },
+  topContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '25px',
+  },
+  header: {
+    fontSize: '34px',
+  },
+  daySelector: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '10px',
+    height: '30px',
+    border: '1px solid #000',
+    borderRadius: '20px',
+    padding: '6px 15px',
+    alignItems: 'center',
+    width: '519px',
+    backgroundColor: '#FFFFFF',
+    fontSize: '18px',
+  },
+  scrollableDiv: {
+    backgroundColor: '#FFFFFF',
+    padding: '20px',
+    borderRadius: '20px',
+    height: '300px',
+    overflowY: 'auto' as const, // Explicitly type 'auto' as a constant
+  },
+  record: {
+    fontSize: '18px',
+    justifyContent: 'space-between',
+    gap: '10px',
+    display: 'flex',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+  },
+};
 
 export default function TodaysPickups() {
   return (
-    <MainContainer>
-      <TopContainer>
-        <Header>Today&apos;s Pickups</Header>
-        <DaySelector>
+    <div style={styles.mainContainer}>
+      <div style={styles.topContainer}>
+        <h1 style={styles.header}>Today&apos;s Pickups</h1>
+        <div style={styles.daySelector}>
           <div>Sun</div>
           <div>Mon</div>
           <div>Tue</div>
@@ -65,9 +68,8 @@ export default function TodaysPickups() {
           <div>Thu</div>
           <div>Fri</div>
           <div>Sat</div>
-        </DaySelector>
-      </TopContainer>
-
+        </div>
+      </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 15px', fontSize: '18px' }}>
         <h3>Pickup ID</h3>
         <h3>Customer</h3>
@@ -76,50 +78,48 @@ export default function TodaysPickups() {
         <h3>Client Contact</h3>
         <h3>Status</h3>
       </div>
-
-      <ScrollableDiv>
-        <Record>
-            <div>1203</div>
-            <div>Mary Johnson</div>
-            <div>Regular</div>
-            <div>Monday</div>
-            <div>123-456-7890</div>
-            <div>Status</div>
-        </Record>
-        <Record>
-            <div>1204</div>
-            <div>Mary Johnson</div>
-            <div>On call</div>
-            <div>Monday</div>
-            <div>123-456-7890</div>
-            <div>Status</div>
-        </Record>
-        <Record>
-            <div>1205</div>
-            <div>Mary Johnson</div>
-            <div>Regular</div>
-            <div>Monday</div>
-            <div>123-456-7890</div>
-            <div>Status</div>
-        </Record>
-        <Record>
-            <div>1206</div>
-            <div>Mary Johnson</div>
-            <div>Regular</div>
-            <div>Monday</div>
-            <div>123-456-7890</div>
-            <div>Status</div>
-        </Record>
-        <Record>
-            <div>1207</div>
-            <div>Mary Johnson</div>
-            <div>Regular</div>
-            <div>Monday</div>
-            <div>123-456-7890</div>
-            <div>Status</div>
-        </Record>
-
-      </ScrollableDiv>
-    </MainContainer>
+      <div style={styles.scrollableDiv}>
+        <div style={styles.record}>
+          <div>1203</div>
+          <div>Mary Johnson</div>
+          <div>Regular</div>
+          <div>Monday</div>
+          <div>123-456-7890</div>
+          <div>Status</div>
+        </div>
+        <div style={styles.record}>
+          <div>1204</div>
+          <div>Mary Johnson</div>
+          <div>On call</div>
+          <div>Monday</div>
+          <div>123-456-7890</div>
+          <div>Status</div>
+        </div>
+        <div style={styles.record}>
+          <div>1205</div>
+          <div>Mary Johnson</div>
+          <div>Regular</div>
+          <div>Monday</div>
+          <div>123-456-7890</div>
+          <div>Status</div>
+        </div>
+        <div style={styles.record}>
+          <div>1206</div>
+          <div>Mary Johnson</div>
+          <div>Regular</div>
+          <div>Monday</div>
+          <div>123-456-7890</div>
+          <div>Status</div>
+        </div>
+        <div style={styles.record}>
+          <div>1207</div>
+          <div>Mary Johnson</div>
+          <div>Regular</div>
+          <div>Monday</div>
+          <div>123-456-7890</div>
+          <div>Status</div>
+        </div>
+      </div>
+    </div>
   );
 }
