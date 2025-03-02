@@ -5,6 +5,7 @@
         "apps/*"
     ],
     "scripts": {
+        "dev:web": "next dev apps/web",
         "lint:web": "eslint --config apps/web/infra/eslint.config.js 'apps/web/web/*.{js,ts,tsx}'",
         "format:web": "prettier --config apps/web/infra/.prettierrc.json --write 'apps/web/web/*.{js,jsx,ts,tsx,json,css,md}'",
         "lint:mobile": "eslint --config apps/mobile/infra/.eslintrc.json apps/mobile/mobile --ext .ts,.tsx,.js,.jsx",
@@ -20,5 +21,8 @@
         "eslint-plugin-react": "^7.37.2",
         "eslint-plugin-react-hooks": "^5.1.0",
         "prettier": "^3.4.2"
+    },
+    "dependencies": {
+        "firebase": "^11.1.0"
     }
 }
