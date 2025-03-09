@@ -1,0 +1,31 @@
+name: Deploy to Firebase Hosting on PR
+on: pull_request
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+jobs:
+  build_and_preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Install and build Next.js app
+      - name: Install Next.js dependencies
+        working-directory: ./apps/web/web
+        run: npm ci
+        
+      - name: Build Next.js app
+        working-directory: ./apps/web/web
+        run: npm run build
+        
+      # Deploy to Firebase
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_UNITED_WE_CAN_67C72 }}
+          projectId: united-we-can-67c72
+          entryPoint: ./firebase 
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
