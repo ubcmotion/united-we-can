@@ -1,4 +1,12 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "requests",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }
