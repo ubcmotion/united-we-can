@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "United We Can",
     description: "United We Can is a Vancouver-based non-profit creating economic opportunities through environmental initiatives for the Downtown Eastside community. Our scheduling app streamlines recycling pickups, empowering truck drivers and businesses to efficiently manage routes, track collections, and support a cleaner, greener future. Join us in building a sustainable community, one container at a time.",
-    url: "url.ca", // website URL
+    url: "https://united-we-can-67c72.web.app/", // website URL
     siteName: "United We Can",
     images: [
       {
