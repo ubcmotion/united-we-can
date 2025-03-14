@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface Styles {
   mainContainer: React.CSSProperties;
@@ -56,18 +56,59 @@ const styles: Styles = {
 };
 
 export default function TodaysPickups() {
+
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  const records = [
+    {
+      id: 1203,
+      name: "Mary Johnson",
+      type: "Regular",
+      day: "Monday",
+      phone: "123-456-7890",
+      status: "Pending"
+    },
+    {
+      id: 1204,
+      name: "Mary Johnson",
+      type: "On call",
+      day: "Monday",
+      phone: "123-456-7890",
+      status: "Pending"
+    },
+    {
+      id: 1205,
+      name: "Mary Johnson",
+      type: "Regular",
+      day: "Monday",
+      phone: "123-456-7890",
+      status: "Pending"
+    },
+    {
+      id: 1206,
+      name: "Mary Johnson",
+      type: "Regular",
+      day: "Monday",
+      phone: "123-456-7890",
+      status: "Pending"
+    },
+    {
+      id: 1207,
+      name: "Mary Johnson",
+      type: "Regular",
+      day: "Monday",
+      phone: "123-456-7890",
+      status: "Pending"
+    }
+  ];
+
   return (
     <div style={styles.mainContainer}>
       <div style={styles.topContainer}>
         <h1 style={styles.header}>Today&apos;s Pickups</h1>
         <div style={styles.daySelector}>
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
+          {weekDays.map((item, index) =>(
+            <div key={index}>{item}</div>
+            ))}
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 15px', fontSize: '18px' }}>
@@ -79,46 +120,16 @@ export default function TodaysPickups() {
         <h3>Status</h3>
       </div>
       <div style={styles.scrollableDiv}>
-        <div style={styles.record}>
-          <div>1203</div>
-          <div>Mary Johnson</div>
-          <div>Regular</div>
-          <div>Monday</div>
-          <div>123-456-7890</div>
-          <div>Status</div>
+        {records.map((record) => (
+          <div style={styles.record} key={record.id}>
+            <div>{record.id}</div>
+            <div>{record.name}</div>
+            <div>{record.type}</div>
+            <div>{record.day}</div>
+            <div>{record.phone}</div>
+            <div>{record.status}</div>
         </div>
-        <div style={styles.record}>
-          <div>1204</div>
-          <div>Mary Johnson</div>
-          <div>On call</div>
-          <div>Monday</div>
-          <div>123-456-7890</div>
-          <div>Status</div>
-        </div>
-        <div style={styles.record}>
-          <div>1205</div>
-          <div>Mary Johnson</div>
-          <div>Regular</div>
-          <div>Monday</div>
-          <div>123-456-7890</div>
-          <div>Status</div>
-        </div>
-        <div style={styles.record}>
-          <div>1206</div>
-          <div>Mary Johnson</div>
-          <div>Regular</div>
-          <div>Monday</div>
-          <div>123-456-7890</div>
-          <div>Status</div>
-        </div>
-        <div style={styles.record}>
-          <div>1207</div>
-          <div>Mary Johnson</div>
-          <div>Regular</div>
-          <div>Monday</div>
-          <div>123-456-7890</div>
-          <div>Status</div>
-        </div>
+        ))}
       </div>
     </div>
   );
