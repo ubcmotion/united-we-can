@@ -8,8 +8,7 @@ service cloud.firestore {
     }
     
     function validateCustomer(data) {
-      return validateData(data.address) && validateData(data.name) 
-      			 && validateEmail(data.email); 
+      return validateData(data.address) && validateData(data.name) && validateEmail(data.email); 
     }
     
     // Ensure the data is a non-empty string
