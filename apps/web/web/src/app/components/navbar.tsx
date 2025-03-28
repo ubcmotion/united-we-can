@@ -1,6 +1,7 @@
 'use client';
 
 import React, {useState} from 'react';
+import "tailwindcss/tailwind.css"
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -8,7 +9,6 @@ interface NavItemProps {
   label: string;
   route: string;
 }
-
 
 const NavigationBar = () => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
@@ -146,7 +146,6 @@ const NavigationBar = () => {
         )}
       </div>
       
-
       {/* Navigation Items  */}
       <nav className="absolute top-[176px] h-[438px] flex flex-col gap-[22px] left-[14px]">
         {menuItems.map((item, index) => (
@@ -163,7 +162,6 @@ const NavigationBar = () => {
         
         {/* Divider */}
         <div className="my-6 border-t-2 border-gray-500" />
-
 
         {/* New Request Button */}
         <a
