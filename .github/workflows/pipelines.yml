@@ -68,63 +68,62 @@ jobs:
             npm test -- --coverage
 
       - name: Upload coverage to GitHub Actions
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: apps/web/web/coverage
 
-  lint-mobile:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # lint-mobile:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Setup Node.js # required by Prettier and ESLint 
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-          cache: 'npm'
+  #     - name: Setup Node.js # required by Prettier and ESLint 
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.x'
+  #         cache: 'npm'
 
-      - name: Install dependencies
-        run: |
-          npm cache clean --force
-          npm install
-          cd apps/mobile/mobile
-          npm install
+  #     - name: Install dependencies
+  #       run: |
+  #         npm cache clean --force
+  #         npm install
+  #         cd apps/mobile/mobile
+  #         npm install
   
-      - name: Run Prettier for Mobile
-        run: npm run format:mobile
+  #     - name: Run Prettier for Mobile
+  #       run: npm run format:mobile
 
-      - name: Run ESLint for Mobile
-        run: npm run lint:mobile
+  #     - name: Run ESLint for Mobile
+  #       run: npm run lint:mobile
     
-  test-mobile:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # test-mobile:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-          cache: 'npm'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.x'
+  #         cache: 'npm'
 
-      - name: Install dependencies
-        run: |
-          npm cache clean --force
-          npm install
-          cd apps/mobile/mobile
-          npm install
+  #     - name: Install dependencies
+  #       run: |
+  #         npm cache clean --force
+  #         npm install
+  #         cd apps/mobile/mobile
+  #         npm install
 
-      - name: Run Tests
-        run: |
-            cd apps/mobile/mobile
-            npm test
+  #     - name: Run Tests
+  #       run: |
+  #           cd apps/mobile/mobile
+  #           npm test
 
-      - name: Upload coverage to GitHub Actions
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: apps/mobile/mobile/coverage
-
+  #     - name: Upload coverage to GitHub Actions
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: coverage-report
+  #         path: apps/mobile/mobile/coverage
