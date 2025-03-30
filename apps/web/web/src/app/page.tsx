@@ -52,8 +52,9 @@ export default function Page() {
       <h1>Home</h1>
       <Link href="/about">About</Link>
       <TodaysPickups/>
-      <TableView rowTitles={titles}
-      records = {tableRecords}>
+      <TableView columnTitles={titles}
+      records = {tableRecords}
+      tableType="driver">
 
       </TableView>
     </div>
