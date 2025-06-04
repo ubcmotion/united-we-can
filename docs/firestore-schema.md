@@ -26,6 +26,7 @@
     "locationId2",
     "locationId3"
   ]
+}
 
 ### 2. `pickupRequests` Collection
 
