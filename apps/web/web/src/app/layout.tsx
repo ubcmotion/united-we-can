@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import NavigationBar from './components/Navbar'
+import "tailwindcss/tailwind.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,6 +21,7 @@ const interFont = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://united-we-can-67c72.web.app"),
   title: {
     default: "United We Can",
     template: "%s | United We Can",
@@ -45,8 +47,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico", // Favicon
   },
-  // manifest: "/site.webmanifest", // Web app manifest
-  themeColor: "#ffffff", // Theme color for PWA
 };
 
 
@@ -57,9 +57,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
-        <NavigationBar />
-        {children}
+      <body className={`bg-primary ${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
+        <div className="flex min-h-screen">
+          <NavigationBar />
+          <main className="flex-1 p-6">{children}</main>
+        </div>
       </body>
     </html>
   )
