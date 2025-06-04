@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import TodaysPickups from './todays-pickups'
+import TodaysPickups from '@/app/components/TodaysPickups'
  
 
 export default function Page() {
@@ -9,6 +9,5 @@ export default function Page() {
       <Link href="/about">About</Link>
       <TodaysPickups/>
     </div>
-    
   )
 }
