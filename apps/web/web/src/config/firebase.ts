@@ -1,18 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// import { getAnalytics } from "firebase/analytics";
-
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCNdD374-i0gCrr8iF1_lpkM-XmgjzoSmU",
-  authDomain: "united-we-can-67c72.firebaseapp.com",
-  databaseURL: "https://united-we-can-67c72-default-rtdb.firebaseio.com",
-  projectId: "united-we-can-67c72",
-  storageBucket: "united-we-can-67c72.firebasestorage.app",
-  messagingSenderId: "1027249835250",
-  appId: "1:1027249835250:web:dba6a1f977ffb0be50146b",
-  measurementId: "G-DEYPCCFXWN"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -24,4 +23,6 @@ export const googleProvider = new GoogleAuthProvider();
 
 // Create firestore entrypoint
 export const db = getFirestore(app);
-// const analytics = getAnalytics(app);
+
+// Create storage entrypoint
+export const storage = getStorage(app);
