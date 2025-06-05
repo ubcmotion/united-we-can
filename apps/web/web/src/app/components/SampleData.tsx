@@ -78,7 +78,7 @@ export default function SampleData() {
       const sampleDataToUpdate = doc(db, "sampleData", id);
       await updateDoc(sampleDataToUpdate, {name: updateName});
     } catch (error) {
-      console.error("Error deleting sample data:", error);
+      console.error("Error updating sample data:", error);
     }
     getSampleData();
   };

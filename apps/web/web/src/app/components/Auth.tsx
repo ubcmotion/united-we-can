@@ -12,7 +12,7 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = async () => {
+  const createAccount = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
@@ -43,7 +43,7 @@ export default function Auth() {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={signIn}>Sign in</button>
+      <button onClick={createAccount}>Create account</button>
       <button onClick={signInWithGoogle}>Sign in with Google</button>
       <button onClick={logout}>Sign out</button>
     </>
