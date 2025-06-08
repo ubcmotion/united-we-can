@@ -15,59 +15,59 @@ interface Styles {
     input: React.CSSProperties;
     button: React.CSSProperties;
     link: React.CSSProperties;
-  }
+}
   
-  const styles: Styles = {
+const styles: Styles = {
     container: {
-      backgroundColor: '#FFFFFF',
-      padding: '30px',
-      borderRadius: '20px',
-      fontFamily: "'Inter', sans-serif",
-      width: '600px',
-      margin: '50px auto',
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
+        backgroundColor: '#FFFFFF',
+        padding: '30px',
+        borderRadius: '20px',
+        fontFamily: "'Inter', sans-serif",
+        width: '600px',
+        margin: '50px auto',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
     },
     header: {
-      fontSize: '28px',
-      fontWeight: 700,
-      marginBottom: '20px'
+        fontSize: '28px',
+        fontWeight: 700,
+        marginBottom: '20px'
     },
     label: {
-      fontWeight: 600,
-      marginBottom: '8px',
-      display: 'block'
+        fontWeight: 600,
+        marginBottom: '8px',
+        display: 'block'
     },
     inputRow: {
-      display: 'flex',
-      gap: '15px',
-      marginTop: '20px'
+        display: 'flex',
+        gap: '15px',
+        marginTop: '20px'
     },
     input: {
-      flex: 1,
-      padding: '10px',
-      fontSize: '16px',
-      borderRadius: '8px',
-      border: '1px solid #ccc',
-      width: '100%'
+        flex: 1,
+        padding: '10px',
+        fontSize: '16px',
+        borderRadius: '8px',
+        border: '1px solid #ccc',
+        width: '100%'
     },
     button: {
-      marginTop: '30px',
-      width: '100%',
-      padding: '12px',
-      backgroundColor: '#0066CC',
-      color: 'white',
-      fontSize: '18px',
-      fontWeight: 600,
-      border: 'none',
-      borderRadius: '12px',
-      cursor: 'pointer'
+        marginTop: '30px',
+        width: '100%',
+        padding: '12px',
+        backgroundColor: '#0066CC',
+        color: 'white',
+        fontSize: '18px',
+        fontWeight: 600,
+        border: 'none',
+        borderRadius: '12px',
+        cursor: 'pointer'
     },
     link: {
-      textAlign: 'center',
-      marginTop: '20px',
-      color: '#0066CC',
-      fontWeight: 500,
-      cursor: 'pointer'
+        textAlign: 'center',
+        marginTop: '20px',
+        color: '#0066CC',
+        fontWeight: 500,
+        cursor: 'pointer'
     }
 };
 
@@ -87,6 +87,7 @@ export default function AddPickup() {
         setPickups([...pickups, {customer: '', driverID: '', totes: ''}]);
     }
 
+    // TODO: handle how you want to connect this to backend, for now just console logs
     const handleSubmit = () => {
         console.log('Submitted pickups:', pickups);
     };
