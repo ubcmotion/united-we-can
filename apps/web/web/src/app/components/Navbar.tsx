@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { storage } from "../../config/firebase";
+import { getDownloadURL, ref, } from "firebase/storage";
 
 
 interface NavItemProps {
@@ -14,6 +16,12 @@ interface NavItemProps {
 
 const NavigationBar = () => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+
+  const logoRef = ref(storage, 'uwc-logo.png');
+  let logoUrl = "";
+  getDownloadURL(logoRef).then((url) => {
+    logoUrl = url;
+  })
 
   const menuItems: NavItemProps[] = [
     {
@@ -323,7 +331,7 @@ const NavigationBar = () => {
         {/* Logo */}
         {isCollapsed ? (
           <Image
-            src="/uwc-logo.png"
+            src={logoUrl}
             width={68}
             height={32}
             alt="UWC Logo"
