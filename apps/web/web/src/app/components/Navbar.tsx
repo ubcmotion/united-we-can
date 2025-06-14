@@ -291,7 +291,7 @@ const NavigationBar = () => {
 
   return (
     <aside
-      className={`h-screen transition-all duration-300 bg-white flex-shrink-0 relative ${
+      className={`h-screen transition-all duration-500 bg-white flex-shrink-0 relative ${
         isCollapsed ? "w-[92px]" : "w-[237px]"
       }`}
     >
@@ -306,7 +306,7 @@ const NavigationBar = () => {
             width={48}
             height={52}
             alt="Expand Navbar"
-            className={`transition-opacity duration-500
+            className={`transition-opacity duration-400
                 ${isCollapsed ? "opacity-100" : "opacity-0"}`}
         />
 
@@ -321,36 +321,28 @@ const NavigationBar = () => {
             width={48}
             height={52}
             alt="Collapse Navbar"
-            className={`transition-opacity duration-500
+            className={`transition-opacity duration-400
                 ${isCollapsed ? "opacity-0" : "opacity-100"}`}
           />
 
       </button>
 
-      <div>
+      <div
+        className={`relative top-[100px] left-[14px]`}>
         {/* Logo */}
-        {isCollapsed ? (
-          <Image
+
+        <Image
             src="/uwc-logo.png"
-            width={68}
-            height={32}
-            alt="UWC Logo"
-            className="absolute top-[102px] left-[12px]"
-          />
-        ) : (
-          <Image
-            src="/uwc-logo.png"
-            width={198}
-            height={100}
-            alt="UWC Logo expanded"
-            className="absolute top-[79px] left-[20px]"
-          />
-        )}
+            width={isCollapsed ? 68 : 198}
+            height={isCollapsed ? 32 : 100}
+            alt={isCollapsed ? "UWC Logo" : "UWC Logo expanded"}
+            className={`transition-all duration-500`}
+        />
       </div>
 
       {/* Navigation Items */}
       <nav
-        className={`absolute top-[176px] h-[438px] flex flex-col gap-[22px] left-[14px] ${
+        className={`relative top-[126px] h-[438px] flex flex-col gap-[22px] left-[14px] ${
           isCollapsed ? "w-[64px]" : "w-[210px]"
         }`}
       >
