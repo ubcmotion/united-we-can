@@ -298,25 +298,33 @@ const NavigationBar = () => {
       {/* Navbar lines */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className={`absolute top-[23px] ${
-          isCollapsed ? "left-[22px]" : "right-[22px]"
-        }`}
-      >
-        {isCollapsed ? (
-          <Image
+        className={`absolute top-[23px] left-[22px]`}
+        >
+
+        <Image
             src="/navbar-lines.svg"
             width={48}
             height={52}
             alt="Expand Navbar"
-          />
-        ) : (
+            className={`transition-opacity duration-500
+                ${isCollapsed ? "opacity-100" : "opacity-0"}`}
+        />
+
+      </button>
+
+      <button 
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className={`absolute top-[23px] right-[22px]`}>
+
           <Image
             src="/navbar-lines-expanded.svg"
             width={48}
             height={52}
             alt="Collapse Navbar"
+            className={`transition-opacity duration-500
+                ${isCollapsed ? "opacity-0" : "opacity-100"}`}
           />
-        )}
+
       </button>
 
       <div>
