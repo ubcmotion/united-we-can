@@ -64,7 +64,8 @@ const styles: Styles = {
     },
     link: {
         textAlign: 'center',
-        marginTop: '20px',
+        display: 'block',
+        margin: '20px auto 0 auto',
         color: '#0066CC',
         fontWeight: 500,
         cursor: 'pointer'
@@ -108,8 +109,9 @@ export default function AddPickup() {
                 <div key={index}>
                     <div style={styles.inputRow}>
                         <div style={{ flex: 1 }}>
-                            <label style={styles.label}>Customer</label>
+                            <label style={styles.label} htmlFor={`customer-${index}`}>Customer</label>
                             <input
+                                id={`customer-${index}`}
                                 type="text"
                                 value={pickup.customer}
                                 onChange={(e) => handleChange(index, 'customer', e.target.value)}
@@ -142,7 +144,7 @@ export default function AddPickup() {
     
             <button style={styles.button} onClick={handleSubmit}>Save</button>
     
-            <div style={styles.link} onClick={handleAddPickup}>Add multiple pickups</div>
+            <button style={styles.link} onClick={handleAddPickup}>Add multiple pickups</button>
         </div>
     );
 }
