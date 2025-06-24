@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { storage } from "../../config/firebase";
-import { getDownloadURL, ref, } from "firebase/storage";
 
 
 interface NavItemProps {
@@ -17,11 +15,6 @@ interface NavItemProps {
 const NavigationBar = () => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
-  const logoRef = ref(storage, 'uwc-logo.png');
-  let logoUrl = "";
-  getDownloadURL(logoRef).then((url) => {
-    logoUrl = url;
-  })
 
   const menuItems: NavItemProps[] = [
     {
@@ -331,18 +324,20 @@ const NavigationBar = () => {
         {/* Logo */}
         {isCollapsed ? (
           <Image
-            src={logoUrl}
+            src="https://firebasestorage.googleapis.com/v0/b/united-we-can-67c72.firebasestorage.app/o/uwc-logo.png?alt=media&token=27cbf1b4-0577-412e-b279-ab296cee80d4"
             width={68}
             height={32}
             alt="UWC Logo"
+            unoptimized
             className="absolute top-[102px] left-[12px]"
           />
         ) : (
           <Image
-            src="/uwc-logo.png"
+            src="https://firebasestorage.googleapis.com/v0/b/united-we-can-67c72.firebasestorage.app/o/uwc-logo.png?alt=media&token=27cbf1b4-0577-412e-b279-ab296cee80d4"
             width={198}
             height={100}
             alt="UWC Logo expanded"
+            unoptimized
             className="absolute top-[79px] left-[20px]"
           />
         )}
