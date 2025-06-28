@@ -307,7 +307,7 @@ const NavigationBar = () => {
             height={52}
             alt="Expand Navbar"
             className={`transition-opacity duration-400
-                ${isCollapsed ? "opacity-100" : "opacity-0"}`}
+                ${isCollapsed ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         />
 
       </button>
@@ -322,7 +322,7 @@ const NavigationBar = () => {
             height={52}
             alt="Collapse Navbar"
             className={`transition-opacity duration-400
-                ${isCollapsed ? "opacity-0" : "opacity-100"}`}
+                ${isCollapsed ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           />
 
       </button>
