@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
-import NavigationBar from './components/Navbar'
 import "tailwindcss/tailwind.css";
-import TopBar from './components/TopBar';
+import { AuthProvider } from "@/app/components/auth/AuthProvider";
+import ProtectedLayout from "@/app/components/ProtectedLayout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -50,7 +50,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,12 +58,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-primary ${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
-        <TopBar />
-        <div className="flex min-h-screen">
-          <NavigationBar />
-          <main className="flex-1 p-6">{children}</main>
-        </div>
+        <AuthProvider>
+          <ProtectedLayout>{children}</ProtectedLayout>
+        </AuthProvider>
       </body>
     </html>
-  )
+  );
 }
