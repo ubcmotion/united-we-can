@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 import NavigationBar from './components/Navbar'
 import "tailwindcss/tailwind.css";
+import TopBar from './components/TopBar';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -58,6 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-primary ${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
+        <TopBar />
         <div className="flex min-h-screen">
           <NavigationBar />
           <main className="flex-1 p-6">{children}</main>

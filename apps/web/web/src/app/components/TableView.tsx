@@ -15,8 +15,8 @@ interface Styles {
 }
 
 interface TableViewProps {
-  columnTitles: string[];
-  records: {
+  columnTitles?: string[];
+  records?: {
     id: number;
     name: string;
     type: string;
@@ -84,7 +84,7 @@ const numColumns = (tableType: TableViewProps['tableType'], columnTitlesLength: 
   return columnTitlesLength + (tableType === 'driver' ? 1 : 0) + (tableType === 'dashboard' ? 0 : 1);
 };
 
-export default function TableView({ columnTitles, records, tableType = 'default' }: TableViewProps) {
+export default function TableView({ columnTitles = [], records = [], tableType = 'default' }: TableViewProps) {
   const totalColumns = numColumns(tableType, columnTitles.length);
 
   return (

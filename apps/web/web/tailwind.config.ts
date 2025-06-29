@@ -9,6 +9,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "#EBEBEB",
+        uwc_blue: "#2567AA",
       },
     },
   },
