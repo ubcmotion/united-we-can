@@ -42,4 +42,4 @@ The web application only allows customers to sign up. Admin and driver roles mus
 ## Security Notes
 - Only admins can view all user profiles
 - Role changes are logged in the database
-- Consider implementing audit trails for role changes in production z
+- Consider implementing audit trails for role changes in production 
