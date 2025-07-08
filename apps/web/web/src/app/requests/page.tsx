@@ -1,4 +1,4 @@
-import Mapbox from '@/app/components/Map';
+import Mapbox from '@/app/components/Mapbox';
 
 // TODO: replace with actual data
 const locations = [
