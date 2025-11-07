@@ -5,17 +5,12 @@ interface Styles {
   topContainer: React.CSSProperties;
   header: React.CSSProperties;
   daySelector: React.CSSProperties;
-  scrollableDiv: React.CSSProperties;
   record: React.CSSProperties;
 }
 
 const styles: Styles = {
   mainContainer: {
-    backgroundColor: '#F5F5F5',
-    padding: '30px',
-    borderRadius: '20px',
     fontFamily: "'Inter', sans-serif",
-    width: '1100px',
   },
   topContainer: {
     display: 'flex',
@@ -23,27 +18,19 @@ const styles: Styles = {
     gap: '25px',
   },
   header: {
-    fontSize: '34px',
+    fontSize: '1.25rem',
+    fontWeight: 700,
   },
   daySelector: {
-    display: 'flex',
     justifyContent: 'space-between',
-    gap: '10px',
+    gap: '1rem',
     height: '30px',
     border: '1px solid #000',
     borderRadius: '20px',
     padding: '6px 15px',
     alignItems: 'center',
-    width: '519px',
     backgroundColor: '#FFFFFF',
     fontSize: '18px',
-  },
-  scrollableDiv: {
-    backgroundColor: '#FFFFFF',
-    padding: '20px',
-    borderRadius: '20px',
-    height: '300px',
-    overflowY: 'auto' as const, // Explicitly type 'auto' as a constant
   },
   record: {
     fontSize: '18px',
@@ -55,9 +42,8 @@ const styles: Styles = {
   },
 };
 
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 export default function TodaysPickups() {
-
-  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   const records = [
     {
       id: 1203,
@@ -102,34 +88,48 @@ export default function TodaysPickups() {
   ];
 
   return (
-    <div style={styles.mainContainer}>
+    <div style={styles.mainContainer} className='flex flex-col items-stretch max-w-max gap-4 bg-white p-8 rounded-2xl shadow-md'>
       <div style={styles.topContainer}>
         <h1 style={styles.header}>Today&apos;s Pickups</h1>
-        <div style={styles.daySelector}>
-          {weekDays.map((item, index) =>(
-            <div key={index}>{item}</div>
-            ))}
+        <div className="hidden md:flex" style={styles.daySelector}>
+          {weekDays.map((item) => (
+            <div key={`pills_${item}`}>{item}</div>
+          ))}
         </div>
+        <select className='block md:hidden'>
+          <option value={""}>No filter</option>
+          {weekDays.map((item) => (
+            <option key={`dd_${item}`} value={item}>{item}</option>
+          ))}
+        </select>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 15px', fontSize: '18px' }}>
-        <h3>Pickup ID</h3>
-        <h3>Customer</h3>
-        <h3>Type</h3>
-        <h3>Scheduled</h3>
-        <h3>Client Contact</h3>
-        <h3>Status</h3>
-      </div>
-      <div style={styles.scrollableDiv}>
-        {records.map((record) => (
-          <div style={styles.record} key={record.id}>
-            <div>{record.id}</div>
-            <div>{record.name}</div>
-            <div>{record.type}</div>
-            <div>{record.day}</div>
-            <div>{record.phone}</div>
-            <div>{record.status}</div>
+      <div className='bg-neutral-100 rounded-2xl py-2 px-4'>
+        <div className='overflow-x-auto'>
+          <table className='whitespace-nowrap'>
+            <thead className='border-b border-neutral-600'>
+              <tr className='*:px-4 *:py-2'>
+                <td>Pickup ID</td>
+                <td>Customer</td>
+                <td>Type</td>
+                <td>Scheduled</td>
+                <td>Client Contact</td>
+                <td>Status</td>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record) => (
+                <tr key={record.id} className='*:px-4 *:py-2'>
+                  <td>{record.id}</td>
+                  <td>{record.name}</td>
+                  <td>{record.type}</td>
+                  <td>{record.day}</td>
+                  <td>{record.phone}</td>
+                  <td>{record.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        ))}
       </div>
     </div>
   );

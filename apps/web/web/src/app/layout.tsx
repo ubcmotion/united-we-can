@@ -57,12 +57,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body className={`bg-primary ${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
         <TopBar />
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen w-screen">
           <NavigationBar />
-          <main className="flex-1 p-6">{children}</main>
+          <main className="flex-1 p-6 grow max-w-[calc(100%-6rem)]">{children}</main>
         </div>
       </body>
     </html>
