@@ -6,10 +6,8 @@ import AddPickup from '@/app/components/AddPickup'
 export default function Page() {
   return (
     <div>
-      <TopBar />
       <h1>Home</h1>
       <TodaysPickups/>
-      <AddPickup/>
     </div>
   );
 }

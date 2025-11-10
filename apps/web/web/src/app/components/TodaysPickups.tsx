@@ -15,7 +15,10 @@ const styles: Styles = {
     padding: '30px',
     borderRadius: '20px',
     fontFamily: "'Inter', sans-serif",
-    width: '1100px',
+    width: '100%',
+    height: '90vh',
+    display: 'flex',
+    flexDirection: 'column',
   },
   topContainer: {
     display: 'flex',
@@ -42,7 +45,6 @@ const styles: Styles = {
     backgroundColor: '#FFFFFF',
     padding: '20px',
     borderRadius: '20px',
-    height: '300px',
     overflowY: 'auto' as const, // Explicitly type 'auto' as a constant
   },
   record: {
@@ -98,7 +100,127 @@ export default function TodaysPickups() {
       day: "Monday",
       phone: "123-456-7890",
       status: "Pending"
-    }
+    },
+    {
+        id: 1208,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1209,
+        name: "Mary Johnson",
+        type: "On call",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1210,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1211,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1212,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1210,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1211,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1212,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1209,
+        name: "Mary Johnson",
+        type: "On call",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1210,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1211,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1212,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1210,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1211,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      },
+      {
+        id: 1212,
+        name: "Mary Johnson",
+        type: "Regular",
+        day: "Monday",
+        phone: "123-456-7890",
+        status: "Pending"
+      }
   ];
 
   return (
