@@ -1,7 +1,9 @@
+import TodaysPickups from "../components/TodaysPickups";
+
 export default function Requests() {
   return (
     <>
-      <h1>Requests</h1>
+      <TodaysPickups/>
     </>
   );
 }
