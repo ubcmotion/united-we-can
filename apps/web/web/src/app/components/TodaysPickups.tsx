@@ -142,7 +142,7 @@ export default function TodaysPickups() {
         status: "Pending"
       },
       {
-        id: 1210,
+        id: 1213,
         name: "Mary Johnson",
         type: "Regular",
         day: "Monday",
@@ -150,7 +150,7 @@ export default function TodaysPickups() {
         status: "Pending"
       },
       {
-        id: 1211,
+        id: 1214,
         name: "Mary Johnson",
         type: "Regular",
         day: "Monday",
@@ -158,63 +158,7 @@ export default function TodaysPickups() {
         status: "Pending"
       },
       {
-        id: 1212,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1209,
-        name: "Mary Johnson",
-        type: "On call",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1210,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1211,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1212,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1210,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1211,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1212,
+        id: 1215,
         name: "Mary Johnson",
         type: "Regular",
         day: "Monday",
