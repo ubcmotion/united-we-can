@@ -16,7 +16,7 @@ const styles: Styles = {
     borderRadius: '20px',
     fontFamily: "'Inter', sans-serif",
     width: '100%',
-    height: '90vh',
+    height: '70vh',
     display: 'flex',
     flexDirection: 'column',
   },
