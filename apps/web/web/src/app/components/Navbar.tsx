@@ -332,7 +332,7 @@ const NavigationBar = () => {
         {/* Logo */}
 
         <Image
-            src="/uwc-logo.png"
+            src="/uwc-logo.svg"
             width={isCollapsed ? 68 : 198}
             height={isCollapsed ? 32 : 100}
             alt={isCollapsed ? "UWC Logo" : "UWC Logo expanded"}
