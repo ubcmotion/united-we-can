@@ -36,6 +36,7 @@ lib-cov
 /out/
 
 # Production builds
+out/
 /build
 *.tgz
 
