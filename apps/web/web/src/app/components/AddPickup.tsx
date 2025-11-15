@@ -23,12 +23,11 @@ const styles: Styles = {
         padding: '30px',
         borderRadius: '20px',
         fontFamily: "'Inter', sans-serif",
-        width: '600px',
-        margin: '50px auto',
+        width: '100%',
         boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
     },
     header: {
-        fontSize: '28px',
+        fontSize: '1.75rem',
         fontWeight: 700,
         marginBottom: '20px'
     },
