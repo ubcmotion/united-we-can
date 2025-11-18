@@ -15,6 +15,8 @@ jobs:
       - name: Install Next.js dependencies
         working-directory: ./apps/web/web
         run: npm ci
+        env:
+          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_TOKEN }}
         
       - name: Build Next.js app
         working-directory: ./apps/web/web
