@@ -1,4 +1,5 @@
 import React from 'react';
+import UserDropdown from './UserDropdown';
 
 export default function TopBar() {
     return (
@@ -10,6 +11,7 @@ export default function TopBar() {
                 }}>
                 Admin Portal
             </strong>
+            <UserDropdown />
         </div>
     );
 }
