@@ -165,7 +165,7 @@ export default function AddPickup() {
 }
 
 export function AddPickupButton({ isCollapsed }: { isCollapsed: boolean }) {
-    const [modalVisible, setModalVisible] = useState<boolean>(true);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
         <>
