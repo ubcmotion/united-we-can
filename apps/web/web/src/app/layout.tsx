@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className={`bg-primary ${geistSans.variable} ${geistMono.variable} ${interFont.variable} antialiased`}>
         <TopBar />
         <div className="flex min-h-screen w-screen">
-          <NavigationBar />
+          <NavigationBar/>
           <main className="flex-1 p-6 grow max-w-[calc(100%-6rem)]">{children}</main>
         </div>
       </body>
