@@ -1,4 +1,5 @@
 import Mapbox from '@/app/components/Mapbox';
+import PickupsTable from '@/app/components/PickupsTable';
 
 // TODO: replace with actual data
 const locations = [
@@ -37,8 +38,9 @@ const locations = [
 export default function Requests() {
   return (
     <div className="flex flex-col h-screen">
-      <h1 className="text-2xl font-bold m-3">Pickups</h1>
+      <h1 className="text-2xl font-bold ml-0.9">Pickups</h1>
       <div className="flex-grow">
+        <PickupsTable/>
         <Mapbox locations={locations} />
       </div>
     </div>

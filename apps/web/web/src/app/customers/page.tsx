@@ -1,8 +1,10 @@
+import CustomersTable from "../components/CustomersTable";
+
 export default function Customers() {
-    return (
-      <>
-        <h1>Customers</h1>
-      </>
-    );
-  }
-  
+  return (
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold ml-0.9">Customers</h1>
+      <CustomersTable />
+    </div>
+  );
+}
