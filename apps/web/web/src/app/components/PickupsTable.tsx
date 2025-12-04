@@ -253,6 +253,9 @@ const records: PickupRecord[] = [
           type: "Regular",
           day: "Monday",
           phone: "123-456-7890",
+          notes: "",
+        actions: "",
+        more: "",
         },
         {
           id: 1214,
@@ -260,6 +263,9 @@ const records: PickupRecord[] = [
           type: "Regular",
           day: "Monday",
           phone: "123-456-7890",
+          notes: "",
+        actions: "",
+        more: "",
         },
         {
           id: 1215,
@@ -267,6 +273,9 @@ const records: PickupRecord[] = [
           type: "Regular",
           day: "Monday",
           phone: "123-456-7890",
+          notes: "",
+        actions: "",
+        more: "",
         }
   ];
 

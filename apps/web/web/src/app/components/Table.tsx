@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-table";
 
 type BaseTableProps<TData> = {
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData>[];
   data: TData[];
 };
 
