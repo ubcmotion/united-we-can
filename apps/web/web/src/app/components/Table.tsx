@@ -24,7 +24,7 @@ export function Table<TData>({ columns, data }: BaseTableProps<TData>) {
     <table className="whitespace-nowrap">
       <thead className="border-b border-neutral-600">
         {table.getHeaderGroups().map(headerGroup => (
-          <tr key={headerGroup.id} className="*:px-4 *:py-2 text-left">
+          <tr key={headerGroup.id} className="*:px-2 *:py-2 text-left">
             {headerGroup.headers.map(header => (
               <th key={header.id}>
                 {header.isPlaceholder
@@ -40,7 +40,7 @@ export function Table<TData>({ columns, data }: BaseTableProps<TData>) {
       </thead>
       <tbody>
         {table.getRowModel().rows.map(row => (
-          <tr key={row.id} className="*:px-4 *:py-2">
+          <tr key={row.id} className="*:px-2 *:py-4">
             {row.getVisibleCells().map(cell => (
               <td key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -2,6 +2,7 @@
 import React from "react";
 import { Table } from "@/app/components/Table";
 import Image from "next/image";
+import "../styles/tables.css";
 
 interface Styles {
   mainContainer: React.CSSProperties;
@@ -79,6 +80,7 @@ const customers: CustomerRecord[] = [
         notes: "View", 
         tag: "Household" 
     },
+    
 ];
 
 const columns = [
@@ -172,7 +174,7 @@ export default function CustomersTable() {
   return (
     <div
       style={styles.mainContainer}
-      className="flex flex-col gap-4 rounded-2xl bg-white p-6 mr-5 shadow-md"
+      className="flex flex-col gap-4 rounded-2xl bg-white p-6 mr-5 shadow-md hide-scrollbar"
     >
       <Table<CustomerRecord> columns={columns} data={customers} />
     </div>

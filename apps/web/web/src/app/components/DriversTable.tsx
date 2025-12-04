@@ -2,6 +2,7 @@
 import React from "react";
 import { Table } from "@/app/components/Table";
 import Image from 'next/image';
+import "../styles/tables.css";
 
 interface Styles {
     mainContainer: React.CSSProperties;
@@ -89,6 +90,186 @@ const records: DriverRecord[] = [
         actions: "",
         more: "",
       },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      },
+      {
+        id: 2204,
+        name: "Mike Wazowski",
+        phone: "123-456-7890",
+        notes: "",
+        contact: "",
+        actions: "",
+        more: "",
+      }
   ];
 
 const driverColumns = [
@@ -184,7 +365,7 @@ export default function DriversTable() {
   return (
     <div
       style={styles.mainContainer}
-      className="flex flex-col items-stretch gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md"
+      className="flex flex-col items-stretch gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md hide-scrollbar"
     >
       <Table<DriverRecord> columns={driverColumns} data={records} />
     </div>

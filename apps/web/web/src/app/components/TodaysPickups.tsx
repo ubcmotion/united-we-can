@@ -148,7 +148,7 @@ export default function TodaysPickups() {
         day: "Monday",
         phone: "123-456-7890",
         status: "Pending"
-      }
+      },
   ];
 
   return (

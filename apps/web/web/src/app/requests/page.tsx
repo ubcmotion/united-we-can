@@ -1,5 +1,7 @@
 import Mapbox from '@/app/components/Mapbox';
 import PickupsTable from '@/app/components/PickupsTable';
+import '../styles/tables.css';
+
 
 // TODO: replace with actual data
 const locations = [
@@ -37,10 +39,10 @@ const locations = [
 
 export default function Requests() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col gap-4 h-screen overflow-y-auto hide-scrollbar">
       <h1 className="text-2xl font-bold ml-0.9">Pickups</h1>
+      <PickupsTable/>
       <div className="flex-grow">
-        <PickupsTable/>
         <Mapbox locations={locations} />
       </div>
     </div>
