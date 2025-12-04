@@ -1,6 +1,5 @@
 import Mapbox from '@/app/components/Mapbox';
 import PickupsTable from '@/app/components/PickupsTable';
-import '../styles/tables.css';
 
 
 // TODO: replace with actual data

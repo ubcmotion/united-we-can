@@ -2,7 +2,6 @@
 import React from "react";
 import { Table } from "@/app/components/Table";
 import Image from 'next/image';
-import "../styles/tables.css";
 
 interface Styles {
     mainContainer: React.CSSProperties;

@@ -2,7 +2,7 @@
 import React from "react";
 import { Table } from "@/app/components/Table";
 import Image from "next/image";
-import "../styles/tables.css";
+import { ColumnDef } from "@tanstack/react-table";
 
 interface Styles {
   mainContainer: React.CSSProperties;
@@ -83,7 +83,7 @@ const customers: CustomerRecord[] = [
     
 ];
 
-const columns = [
+const columns: ColumnDef<CustomerRecord>[] = [
   {
     accessorKey: "id",
     header: "Customer ID",

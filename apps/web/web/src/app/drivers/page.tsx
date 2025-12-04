@@ -1,5 +1,4 @@
 import DriversTable from "../components/DriversTable";
-import "../styles/tables.css";
 
 export default function Drivers() {
   return (
