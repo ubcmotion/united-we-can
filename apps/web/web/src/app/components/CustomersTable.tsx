@@ -4,21 +4,11 @@ import { Table } from "@/app/components/Table";
 import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table";
 
-interface Styles {
-  mainContainer: React.CSSProperties;
-}
-
-const styles: Styles = {
-  mainContainer: {
-    fontFamily: "'Inter', sans-serif",
-  },
-};
-
 type CustomerRecord = {
   id: number;
   name: string;
   phone: string;
-  notes: string;
+  notes: "View";
   tag: "Hotel" | "Commercial" | "Household";
   actions?: string;
   more?: string;
@@ -39,48 +29,33 @@ const customers: CustomerRecord[] = [
         tag: "Hotel" 
     },
     { 
-        id: 2204, 
+        id: 2205, 
         name: "Mike Wazowski", 
         phone: "123-456-7890", 
         notes: "View", 
         tag: "Hotel" 
     },
     { 
-        id: 2204, 
+        id: 2206, 
         name: "Mike Wazowski", 
         phone: "123-456-7890", 
         notes: "View", 
         tag: "Commercial" 
     },
     { 
-        id: 2204, 
+        id: 2207, 
         name: "Mike Wazowski", 
         phone: "123-456-7890",
         notes: "View", 
         tag: "Household" 
     },
     { 
-        id: 2204, 
+        id: 2208, 
         name: "Mike Wazowski", 
         phone: "123-456-7890", 
         notes: "View", 
         tag: "Commercial" 
     },
-    { 
-        id: 2204, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890", 
-        notes: "View", 
-        tag: "Commercial" 
-    },
-    { 
-        id: 2204, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890",
-        notes: "View", 
-        tag: "Household" 
-    },
-    
 ];
 
 const columns: ColumnDef<CustomerRecord>[] = [
@@ -137,6 +112,7 @@ const columns: ColumnDef<CustomerRecord>[] = [
           <Image 
             src="/edit.svg" 
             alt="Edit Customer" 
+            aria-label="Edit customer"
             width={20} 
             height={30} 
           />
@@ -145,6 +121,7 @@ const columns: ColumnDef<CustomerRecord>[] = [
           <Image 
             src="/delete.svg" 
             alt="Delete Customer" 
+            aria-label="Delete customer"
             width={20} 
             height={30} 
           />
@@ -161,6 +138,7 @@ const columns: ColumnDef<CustomerRecord>[] = [
         <Image 
             src="/more.svg" 
             alt="More" 
+            aria-label="More"
             width={20} 
             height={30} 
         />
@@ -173,8 +151,7 @@ const columns: ColumnDef<CustomerRecord>[] = [
 export default function CustomersTable() {
   return (
     <div
-      style={styles.mainContainer}
-      className="flex flex-col gap-4 rounded-2xl bg-white p-6 mr-5 shadow-md hide-scrollbar"
+      className="flex flex-col gap-4 rounded-2xl bg-white font-sans p-6 mr-5 shadow-md hide-scrollbar"
     >
       <Table<CustomerRecord> columns={columns} data={customers} />
     </div>

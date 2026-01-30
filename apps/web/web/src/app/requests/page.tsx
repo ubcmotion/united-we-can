@@ -39,7 +39,7 @@ const locations = [
 export default function Requests() {
   return (
     <div className="flex flex-col gap-4 h-screen overflow-y-auto hide-scrollbar">
-      <h1 className="text-2xl font-bold ml-0.9">Pickups</h1>
+      <h1 className="text-2xl font-bold ml-1">Pickups</h1>
       <PickupsTable/>
       <div className="flex-grow">
         <Mapbox locations={locations} />

@@ -26,7 +26,7 @@ export function Table<TData>({ columns, data }: BaseTableProps<TData>) {
         {table.getHeaderGroups().map(headerGroup => (
           <tr key={headerGroup.id} className="*:px-2 *:py-2 text-left">
             {headerGroup.headers.map(header => (
-              <th key={header.id}>
+              <th key={header.id} scope='col'>
                 {header.isPlaceholder
                   ? null
                   : flexRender(

@@ -3,273 +3,31 @@ import React from "react";
 import { Table } from "@/app/components/Table";
 import Image from 'next/image';
 
-interface Styles {
-    mainContainer: React.CSSProperties;
-  }
-  
-const styles: Styles = {
-    mainContainer: {
-      fontFamily: "'Inter', sans-serif",
-    },
-    
-};
-
 type DriverRecord = {
     id: number;
     name: string;
     phone: string;
-    notes: string;
-    contact: string;
-    actions: string;
-    more: string;
+    notes: React.ReactNode;
+    contact: React.ReactNode;
+    actions: React.ReactNode;
+    more: React.ReactNode;
 };
 
 
-const records: DriverRecord[] = [
-    {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      },
-      {
-        id: 2204,
-        name: "Mike Wazowski",
-        phone: "123-456-7890",
-        notes: "",
-        contact: "",
-        actions: "",
-        more: "",
-      }
-  ];
+const basePickup: Omit<DriverRecord, "id"> = {
+  name: "Mike Wazowski",
+  phone: "123-456-7890",
+  notes: null,
+  contact: null,
+  actions: null,
+  more: null,
+};
+
+const records: DriverRecord[] = Array.from({ length: 6 }, (_, index) => ({
+  ...basePickup,
+  id: 1203 + index,
+  type: index % 4 === 1 ? "On call" : "Regular",
+}));
 
 const driverColumns = [
     {
@@ -327,6 +85,7 @@ const driverColumns = [
                     <Image
                         src="/edit.svg"
                         alt="Edit Driver"
+                        aria-label="Edit driver"
                         width={20}
                         height={30}
                     />
@@ -335,6 +94,7 @@ const driverColumns = [
                     <Image
                         src="/delete.svg"
                         alt="Delete Driver"
+                        aria-label="Delete driver"
                         width={20}
                         height={30}
                     />
@@ -351,6 +111,7 @@ const driverColumns = [
                 <Image
                     src="/more.svg"
                     alt="See More About Driver"
+                    aria-label="Show more options for driver"
                     width={20}
                     height={30}
                 />
@@ -363,8 +124,7 @@ const driverColumns = [
 export default function DriversTable() {
   return (
     <div
-      style={styles.mainContainer}
-      className="flex flex-col items-stretch gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md hide-scrollbar"
+      className="flex flex-col items-stretch font-sans gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md hide-scrollbar"
     >
       <Table<DriverRecord> columns={driverColumns} data={records} />
     </div>
