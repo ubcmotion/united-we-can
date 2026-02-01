@@ -14,7 +14,7 @@ export default function LoginComponent(): JSX.Element {
 
   const handleLogin = (): void => {
     const formData: LoginFormData = { username, password, rememberMe };
-    console.log('Login attempted with:', formData);
+    console.log('Login attempted for user:', username, 'rememberMe:', rememberMe);
 
 };
   
