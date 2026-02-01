@@ -73,7 +73,7 @@ export default function LoginComponent(): JSX.Element {
           <View style={styles.optionsRow}>
             <TouchableOpacity 
               style={styles.rememberMeContainer}
-              onPress={() => setRememberMe(!rememberMe)}
+              onPress={() => setRememberMe(prev => !prev)}
             >
               <View style={[styles.checkbox, rememberMe && styles.checkboxChecked]}>
                 {rememberMe && <Text style={styles.checkmark}>✓</Text>}
