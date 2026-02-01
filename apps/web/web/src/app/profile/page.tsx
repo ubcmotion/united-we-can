@@ -2,33 +2,11 @@
 
 import React from "react";
 import { LuUserRound, LuPencil } from "react-icons/lu";
-import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header Section */}
-      <div className="bg-uwc_blue text-white p-5 flex items-center gap-4">
-        <button
-          onClick={() => router.back()}
-          className="text-white hover:opacity-80"
-        >
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <h1 className="text-2xl font-bold">My Profile</h1>
-      </div>
-
       <div className="max-w-6xl mx-auto p-6 space-y-6">
         {/* Profile Card */}
         <div className="bg-white rounded-lg shadow p-8">

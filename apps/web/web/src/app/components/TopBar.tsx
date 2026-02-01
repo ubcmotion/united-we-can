@@ -44,7 +44,7 @@ export default function TopBar() {
           <div className="absolute right-0 mt-3 min-w-[220px] bg-white text-black shadow-lg p-3 z-50 -mx-5">
             <button
               onClick={() => {
-                router.push("/profile/");
+                router.push("/profile");
                 setOpen(false);
               }}
               className="w-full flex items-center justify-between px-3 py-2 hover:bg-gray-100 rounded"
