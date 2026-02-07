@@ -18,9 +18,9 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
+        tabBarIconStyle: { marginTop: 10 }, 
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: "absolute",
           },
           default: {},
@@ -31,14 +31,37 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={24} name="house.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="map"
         options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Map",
+          tabBarIcon: ({ color }) => <IconSymbol size={24} name="map.fill" color={color} />,
+        }}
+      />
+      
+      <Tabs.Screen
+        name="create"
+        options={{
+          title: "",
+          tabBarIcon: ({ color }) => <IconSymbol size={46} name="plus.circle.fill" color={color} />,
+          tabBarIconStyle: { marginTop: 17},
+        }}
+      />
+      <Tabs.Screen
+        name="customers"
+        options={{
+          title: "Customers",
+          tabBarIcon: ({ color }) => <IconSymbol size={24} name="person.3.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: "Chat",
+          tabBarIcon: ({ color }) => <IconSymbol size={24} name="text.bubble.fill" color={color} />,
         }}
       />
     </Tabs>
