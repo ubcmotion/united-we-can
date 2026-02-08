@@ -1,7 +1,8 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "@/app/components/Table";
 import Image from 'next/image';
+import supabase from "../supabase/supabaseApi";
 
 type DriverRecord = {
     id: number;
@@ -12,22 +13,6 @@ type DriverRecord = {
     actions: React.ReactNode;
     more: React.ReactNode;
 };
-
-
-const basePickup: Omit<DriverRecord, "id"> = {
-  name: "Mike Wazowski",
-  phone: "123-456-7890",
-  notes: null,
-  contact: null,
-  actions: null,
-  more: null,
-};
-
-const records: DriverRecord[] = Array.from({ length: 6 }, (_, index) => ({
-  ...basePickup,
-  id: 1203 + index,
-  type: index % 4 === 1 ? "On call" : "Regular",
-}));
 
 const driverColumns = [
     {
@@ -122,11 +107,61 @@ const driverColumns = [
 ]
 
 export default function DriversTable() {
+    const [data, setData] = useState<DriverRecord[]>([]);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+    const load = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+        .from('pickups')
+        .select(`
+            id,
+            pickup_requests!request_id (
+                users!customer_id (
+                    id,
+                    full_name,
+                    phone
+                )
+            )
+        `);
+
+        if (error) {
+            console.error(error);
+            setLoading(false);
+            return;
+        }  
+
+        const rows = (data ?? []).map(p => {
+            const req = Array.isArray(p.pickup_requests)
+                ? p.pickup_requests[0]
+                : p.pickup_requests;
+
+            const usr = Array.isArray(req?.users) ? req.users[0] : req?.users;
+
+            return {
+                id: p.id, // keep as string if it’s a UUID
+                name: usr?.full_name ?? 'Unknown',
+                phone: usr?.phone ?? 'Unknown',
+                notes: null,
+                contact: null,
+                actions: null,
+                more: null,
+            };
+        });
+
+            setData(rows);
+            setLoading(false);
+        };
+        load();
+    }, []);
+
   return (
     <div
       className="flex flex-col items-stretch font-sans gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md hide-scrollbar"
     >
-      <Table<DriverRecord> columns={driverColumns} data={records} />
+        {loading && <div>Loading...</div>}
+      <Table<DriverRecord> columns={driverColumns} data={data} />
     </div>
   );
 }
