@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
+import supabase from '../supabase/supabaseApi';
 
 interface Styles {
   mainContainer: React.CSSProperties;
@@ -42,114 +44,66 @@ const styles: Styles = {
   },
 };
 
+type PickupRecord = {
+  id: string;
+  name: string;
+  type: string;
+  day: string;
+  phone: string;
+  status: React.ReactNode;
+};
+
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 export default function TodaysPickups() {
-  const records = [
-    {
-      id: 1203,
-      name: "Mary Johnson",
-      type: "Regular",
-      day: "Monday",
-      phone: "123-456-7890",
-      status: "Pending"
-    },
-    {
-      id: 1204,
-      name: "Mary Johnson",
-      type: "On call",
-      day: "Monday",
-      phone: "123-456-7890",
-      status: "Pending"
-    },
-    {
-      id: 1205,
-      name: "Mary Johnson",
-      type: "Regular",
-      day: "Monday",
-      phone: "123-456-7890",
-      status: "Pending"
-    },
-    {
-      id: 1206,
-      name: "Mary Johnson",
-      type: "Regular",
-      day: "Monday",
-      phone: "123-456-7890",
-      status: "Pending"
-    },
-    {
-      id: 1207,
-      name: "Mary Johnson",
-      type: "Regular",
-      day: "Monday",
-      phone: "123-456-7890",
-      status: "Pending"
-    },
-    {
-        id: 1208,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1209,
-        name: "Mary Johnson",
-        type: "On call",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1210,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1211,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1212,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1213,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1214,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-      {
-        id: 1215,
-        name: "Mary Johnson",
-        type: "Regular",
-        day: "Monday",
-        phone: "123-456-7890",
-        status: "Pending"
-      },
-  ];
+  const [data, setData] = useState<PickupRecord[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    const load = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+        .from('pickups')
+        .select(`
+            id,
+            pickup_requests!request_id (
+                requested_date,
+                status,
+                users!customer_id (
+                    full_name,
+                    phone
+                )
+            )
+        `);
+
+        if (error) {
+            console.error(error);
+            setLoading(false);
+            return;
+        }  
+
+        const rows = (data ?? []).map(p => {
+            const req = Array.isArray(p.pickup_requests)
+                ? p.pickup_requests[0]
+                : p.pickup_requests;
+
+            const usr = Array.isArray(req?.users) ? req.users[0] : req?.users;
+
+            return {
+                id: p.id, // keep as string if it’s a UUID
+                name: usr?.full_name ?? 'Unknown',
+                type: 'Regular',
+                day: req.requested_date ?? '',
+                phone: usr?.phone ?? 'Unknown',
+                status: req.status,
+            };
+        });
+
+        console.log(rows)
+        setData(rows);
+        setLoading(false);
+    };
+    load();
+    }, []);
 
   return (
     <div style={styles.mainContainer} className='flex flex-col items-stretch max-w-max gap-4 bg-white p-8 rounded-2xl shadow-md'>
@@ -181,7 +135,8 @@ export default function TodaysPickups() {
               </tr>
             </thead>
             <tbody>
-              {records.map((record) => (
+                {loading && <div>Loading...</div>}
+              {data.map((record) => (
                 <tr key={record.id} className='*:px-4 *:py-2'>
                   <td>{record.id}</td>
                   <td>{record.name}</td>

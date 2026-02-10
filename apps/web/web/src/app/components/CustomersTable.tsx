@@ -1,17 +1,18 @@
 "use client"
-import React from "react";
+import {useState, useEffect } from "react";
 import { Table } from "@/app/components/Table";
 import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table";
+import supabase from "../supabase/supabaseApi";
 
 type CustomerRecord = {
   id: number;
   name: string;
   phone: string;
-  notes: "View";
+  notes: React.ReactNode;
   tag: "Hotel" | "Commercial" | "Household";
-  actions?: string;
-  more?: string;
+  actions?: React.ReactNode;
+  more?: React.ReactNode;
 };
 
 const tagColors: Record<CustomerRecord["tag"], string> = {
@@ -19,44 +20,6 @@ const tagColors: Record<CustomerRecord["tag"], string> = {
   Commercial: "#FFF190",
   Household: "#0000FF",
 };
-
-const customers: CustomerRecord[] = [
-    { 
-        id: 2204, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890", 
-        notes: "View", 
-        tag: "Hotel" 
-    },
-    { 
-        id: 2205, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890", 
-        notes: "View", 
-        tag: "Hotel" 
-    },
-    { 
-        id: 2206, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890", 
-        notes: "View", 
-        tag: "Commercial" 
-    },
-    { 
-        id: 2207, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890",
-        notes: "View", 
-        tag: "Household" 
-    },
-    { 
-        id: 2208, 
-        name: "Mike Wazowski", 
-        phone: "123-456-7890", 
-        notes: "View", 
-        tag: "Commercial" 
-    },
-];
 
 const columns: ColumnDef<CustomerRecord>[] = [
   {
@@ -149,11 +112,60 @@ const columns: ColumnDef<CustomerRecord>[] = [
 ];
 
 export default function CustomersTable() {
+    const [data, setData] = useState<CustomerRecord[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    const load = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+        .from('pickups')
+        .select(`
+            id,
+            pickup_requests!request_id (
+                users!customer_id (
+                    full_name,
+                    phone
+                )
+            )
+        `);
+
+        if (error) {
+            console.error(error);
+            setLoading(false);
+            return;
+        }  
+
+        const rows = (data ?? []).map(p => {
+            const req = Array.isArray(p.pickup_requests)
+                ? p.pickup_requests[0]
+                : p.pickup_requests;
+
+            const usr = Array.isArray(req?.users) ? req.users[0] : req?.users;
+
+            return {
+                id: p.id,
+                name: usr?.full_name ?? 'Unknown',
+                phone: usr?.phone ?? 'Unknown',
+                notes: null,
+                tag: 'Hotel' as const,
+                actions: null,
+                more: null,
+            };
+        });
+
+        setData(rows);
+        setLoading(false);
+    };
+    load();
+    }, []);
+
   return (
     <div
       className="flex flex-col gap-4 rounded-2xl bg-white font-sans p-6 mr-5 shadow-md hide-scrollbar"
     >
-      <Table<CustomerRecord> columns={columns} data={customers} />
+        {loading && <div>Loading...</div>}
+      <Table<CustomerRecord> columns={columns} data={data} />
     </div>
   );
 }

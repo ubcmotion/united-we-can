@@ -1,35 +1,20 @@
 "use client"
-import React from "react";
+import { useEffect, useState } from "react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { Table } from "@/app/components/Table";
 import Image from "next/image";
+import supabase from "../supabase/supabaseApi";
 
 type PickupRecord = {
-  id: number;
+  id: string;
   name: string;
   type: string;
   day: string;
   phone: string;
-  notes: null;
-  actions: null;
-  more: null;
+  notes: React.ReactNode;
+  actions: React.ReactNode;
+  more: React.ReactNode;
 };
-
-const basePickup: Omit<PickupRecord, "id"> = {
-  name: "Mary Johnson",
-  type: "Regular",
-  day: "Monday",
-  phone: "123-456-7890",
-  notes: null,
-  actions: null,
-  more: null,
-};
-
-const records: PickupRecord[] = Array.from({ length: 29 }, (_, index) => ({
-  ...basePickup,
-  id: 1203 + index,
-  type: index % 4 === 1 ? "On call" : "Regular",
-}));
 
 const pickupColumns: ColumnDef<PickupRecord>[] = [
   {
@@ -114,9 +99,59 @@ const pickupColumns: ColumnDef<PickupRecord>[] = [
 ];
 
 export default function PickupsTable() {
+    const [data, setData] = useState<PickupRecord[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    const load = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+        .from('pickups')
+        .select(`
+            id,
+            pickup_requests!request_id (
+                requested_date,
+                users!customer_id (
+                    full_name,
+                    phone
+                )
+            )
+        `);
+
+        if (error) {
+            console.error(error);
+            setLoading(false);
+            return;
+        }  
+
+        const rows = (data ?? []).map(p => {
+            const req = Array.isArray(p.pickup_requests)
+                ? p.pickup_requests[0]
+                : p.pickup_requests;
+
+            const usr = Array.isArray(req?.users) ? req.users[0] : req?.users;
+
+            return {
+                id: p.id,
+                name: usr?.full_name ?? 'Unknown',
+                phone: usr?.phone ?? 'Unknown',
+                type: 'Regular',
+                day: req.requested_date ?? '',
+                notes: null,
+                actions: null,
+                more: null,
+            };
+        });
+        setData(rows);
+        setLoading(false);
+    };
+    load();
+    }, []);
+
   return (
     <div className="font-sans flex flex-col items-stretch gap-4 bg-white p-8 rounded-2xl mr-5 shadow-md">
-      <Table<PickupRecord> columns={pickupColumns} data={records} />
+        {loading && <div>Loading...</div>}
+      <Table<PickupRecord> columns={pickupColumns} data={data} />
     </div>
   );
 }
