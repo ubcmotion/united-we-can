@@ -94,6 +94,7 @@ export default function AddPickup() {
     // TODO: handle how you want to connect this to backend, for now just console logs
     const handleSubmit = () => {
         console.log("Submitted pickups:", pickups);
+        
     };
 
     return (

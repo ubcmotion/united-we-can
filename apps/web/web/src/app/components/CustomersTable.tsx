@@ -144,7 +144,7 @@ export default function CustomersTable() {
             const usr = Array.isArray(req?.users) ? req.users[0] : req?.users;
 
             return {
-                id: p.id, // keep as string if it’s a UUID
+                id: p.id,
                 name: usr?.full_name ?? 'Unknown',
                 phone: usr?.phone ?? 'Unknown',
                 notes: null,
