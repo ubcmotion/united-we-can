@@ -3,9 +3,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SlLogout } from "react-icons/sl";
 import { LuUserRound } from "react-icons/lu";
+import LogOutConfirmation from "./LogoutConfirmation";
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function TopBar() {
 
             <button
               onClick={() => {
-                console.log("Log Out clicked"); // TODO: replace with actual log out functionality
+                setShowLogoutConfirmation(true);
                 setOpen(false);
               }}
               className="w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100"
@@ -68,6 +70,15 @@ export default function TopBar() {
           </div>
         )}
       </div>
+        {showLogoutConfirmation && (
+        <LogOutConfirmation
+          onCancel={() => setShowLogoutConfirmation(false)}
+          onLogOut={() => {
+            console.log("Logging out..."); // TODO: replace with actual logout
+            setShowLogoutConfirmation(false);
+          }}
+        />
+      )}
     </div>
   );
 }
