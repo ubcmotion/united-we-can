@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { LuUserRound, LuPencil } from "react-icons/lu";
 
