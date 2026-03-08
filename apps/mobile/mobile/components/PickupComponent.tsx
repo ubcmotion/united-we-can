@@ -1,9 +1,9 @@
 import { Text, View, Pressable, StyleSheet } from "react-native";
 import Feather from '@expo/vector-icons/Feather';
 
-export default function PickupComponent({ title, status, address }: { title: string, status: "Assigned" | "Completed", address: string }) {
+export default function PickupComponent({ title, status, address, onPress }: { title: string, status: "Assigned" | "Completed", address: string, onPress?: () => void }) {
     return (
-        <Pressable>
+        <Pressable onPress={onPress}>
             <View style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={styles.cardHeading}>
