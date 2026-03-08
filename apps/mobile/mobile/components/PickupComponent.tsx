@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         gap: 8
     },
     cardTitle: {
-        fontWeight: 700,
+        fontWeight: "700",
         fontSize: 20
     },
     statusChip: {
