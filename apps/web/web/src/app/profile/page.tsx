@@ -35,29 +35,28 @@ export default function ProfilePage() {
 
           <hr className="mb-6" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <dl className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <label className="text-sm text-gray-500">First Name</label>
-              <p className="text-base mt-1">Mike</p>
+              <dt className="text-sm text-gray-500">First Name</dt>
+              <dd className="text-base mt-1">Mike</dd>
             </div>
             <div>
-              <label className="text-sm text-gray-500">Last Name</label>
-              <p className="text-base mt-1">Wazowski</p>
+              <dt className="text-sm text-gray-500">Last Name</dt>
+              <dd className="text-base mt-1">Wazowski</dd>
             </div>
-            <div className="md:col-span-2 lg:col-span-1"></div>
-            <div>
-              <label className="text-sm text-gray-500">Email Address</label>
-              <p className="text-base mt-1">mike.wazowski@uwc.com</p>
-            </div>
-            <div>
-              <label className="text-sm text-gray-500">Phone Number</label>
-              <p className="text-base mt-1">(+1) 111-111-1111</p>
+            <div className="lg:col-start-1">
+              <dt className="text-sm text-gray-500">Email Address</dt>
+              <dd className="text-base mt-1">mike.wazowski@uwc.com</dd>
             </div>
             <div>
-              <label className="text-sm text-gray-500">Postal Code</label>
-              <p className="text-base mt-1">V6T 1Z1</p>
+              <dt className="text-sm text-gray-500">Phone Number</dt>
+              <dd className="text-base mt-1">(+1) 111-111-1111</dd>
             </div>
-          </div>
+            <div>
+              <dt className="text-sm text-gray-500">Postal Code</dt>
+              <dd className="text-base mt-1">V6T 1Z1</dd>
+            </div>
+          </dl>
         </div>
 
         {/* Account Details Card */}
@@ -66,20 +65,20 @@ export default function ProfilePage() {
 
           <hr className="mb-6" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <dl className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="text-sm text-gray-500">User Type</label>
-              <p className="text-base mt-1">Admin</p>
+              <dt className="text-sm text-gray-500">User Type</dt>
+              <dd className="text-base mt-1">Admin</dd>
             </div>
             <div>
-              <label className="text-sm text-gray-500">Creation Date</label>
-              <p className="text-base mt-1">January 13, 2025</p>
+              <dt className="text-sm text-gray-500">Creation Date</dt>
+              <dd className="text-base mt-1">January 13, 2025</dd>
             </div>
             <div>
-              <label className="text-sm text-gray-500">Last Activity</label>
-              <p className="text-base mt-1">November 16, 2025</p>
+              <dt className="text-sm text-gray-500">Last Activity</dt>
+              <dd className="text-base mt-1">November 16, 2025</dd>
             </div>
-          </div>
+          </dl>
         </div>
       </div>
     </div>
