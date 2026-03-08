@@ -9,7 +9,7 @@ export default function PickupComponent({ title, status, address, onPress }: { t
                     <View style={styles.cardHeading}>
                         <Text style={styles.cardTitle}>{title}</Text>
                         <View style={styles.statusChip}>
-                            <View style={status == "Assigned" ? styles.statusDotAssigned : styles.statusDotCompleted} />
+                            <View style={status === "Assigned" ? styles.statusDotAssigned : styles.statusDotCompleted} />
                             <Text >{status}</Text>
                         </View>
                     </View>
