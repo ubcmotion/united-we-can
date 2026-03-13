@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 
-export default function Pickup() {
+export default function Map() {
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.titleContainer}>
