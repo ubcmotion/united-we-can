@@ -1,11 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import { Portal } from "./Portal";
+import supabase from "../supabase/supabaseApi";
+import { geocodeAddress } from "../utils/geocode";
 
 interface Pickup {
-    customer: string;
-    driverID: string;
-    totes: string;
+    customerName: string;
+    customerEmail: string;
+    phoneNumber: string;
+    driverEmail: string;
+    volume: string;
+    location: string;
+    notes: string;
 }
 
 interface Styles {
@@ -17,6 +23,8 @@ interface Styles {
     button: React.CSSProperties;
     link: React.CSSProperties;
 }
+
+type Status = "pending" | "accepted";
 
 const styles: Styles = {
     container: {
@@ -78,7 +86,7 @@ const styles: Styles = {
 export default function AddPickup() {
     const [date, setDate] = useState("");
     const [pickups, setPickups] = useState<Pickup[]>([
-        { customer: "", driverID: "", totes: "" }
+        { customerName: "", customerEmail: "", phoneNumber: "", driverEmail: "", volume: "", location: "", notes: "" }
     ]);
 
     const handleChange = (index: number, field: keyof Pickup, value: string) => {
@@ -88,13 +96,131 @@ export default function AddPickup() {
     };
 
     const handleAddPickup = () => {
-        setPickups([...pickups, { customer: "", driverID: "", totes: "" }]);
+        setPickups([...pickups, { customerName: "", customerEmail: "", phoneNumber: "", driverEmail: "", volume: "", location: "", notes: "" }]);
     };
 
     // TODO: handle how you want to connect this to backend, for now just console logs
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log("Submitted pickups:", pickups);
-        
+        const customerEmail = pickups[0]?.customerEmail;
+        const customerName = pickups[0]?.customerName;
+        const customerPhone = pickups[0]?.phoneNumber;
+        const locationName = pickups[0]?.location?.trim().replace(/,+$/, "");
+        const notes = pickups[0]?.notes;
+
+        if (!date) {
+            console.error("Missing request date");
+            return;
+        }
+        if (!locationName) {
+            console.error("Missing location");
+            return;
+        }
+
+        const [
+            { data: userData, error: userLookupError },
+            { data: locationData, error: locationLookupError },
+        ] = await Promise.all([
+            supabase.from("users").select("id").ilike("email", customerEmail).limit(1),
+            supabase.from("locations").select("id").ilike("address", locationName).limit(1),
+        ]);
+
+        if (userLookupError || locationLookupError) {
+            console.error("Lookup failed", { userLookupError, locationLookupError });
+            return;
+        }
+
+        let locationId = locationData?.[0]?.id;
+        let userId = userData?.[0]?.id;
+
+        if (!userId) {
+            const { data: user, error: insertUserError } = await supabase
+                .from("users")
+                .insert([
+                    {
+                        role: "customer",
+                        full_name: customerName,
+                        email: customerEmail,
+                        phone: customerPhone,
+                    },
+                ])
+                .select("id")
+                .single();
+
+            if (insertUserError) {
+                console.error("User insert failed", insertUserError);
+                return;
+            }
+
+            userId = user?.id;
+        }
+        if (!locationId) {
+            let coords = null;
+            try {
+                coords = await geocodeAddress(locationName || "");
+            } catch (err) {
+                console.warn("Geocode failed, using defaults", err);
+            }
+
+            const fallbackLat = 49.2827;   // Default lat (e.g., Vancouver)
+            const fallbackLon = -123.1207; // Default lon (e.g., Vancouver)
+            const latitude = coords?.lat ?? fallbackLat;
+            const longitude = coords?.lon ?? fallbackLon;
+
+            const { data: location, error: insertLocationError } = await supabase
+                .from("locations")
+                .insert([
+                    {
+                        customer_id: userId,
+                        address: locationName,
+                        latitude,
+                        longitude,
+                        instructions: null,
+                    }
+                ])
+                .select("id")
+                .single();
+
+            if (insertLocationError) {
+                console.error("Location insert failed", insertLocationError);
+                return;
+            }
+
+            locationId = location?.id;
+        }
+
+        const { data: existingRequests, error: existingError } = await supabase
+            .from("pickup_requests")
+            .select("id")
+            .eq("customer_id", userId)
+            .eq("location_id", locationId)
+            .eq("requested_date", date)
+            .limit(1);
+
+        if (existingError) {
+            console.error("Pickup lookup failed", existingError);
+            return;
+        }
+
+        if (existingRequests && existingRequests.length > 0) {
+            console.warn("Pickup request already exists for this location/customer/date");
+            return;
+        }
+
+        const { error: pickupInsertError } = await supabase.from("pickup_requests")
+            .insert([
+                {
+                    location_id: locationId,
+                    customer_id: userId,
+                    requested_date: date,
+                    status: "pending" as Status,
+                    notes: notes,
+                }
+            ]);
+
+        if (pickupInsertError) {
+            console.error("Pickup insert failed", pickupInsertError);
+        }
     };
 
     return (
@@ -112,41 +238,79 @@ export default function AddPickup() {
             <div className="overflow-y-auto">
                 {pickups.map((pickup, index) => (
                     <div key={index}>
+                        <div style={{ marginTop: "20px" }}>
+                            <label style={styles.label}>Customer Name</label>
+                            <input
+                                type="text"
+                                value={pickup.customerName}
+                                onChange={(e) => handleChange(index, "customerName", e.target.value)}
+                                style={styles.input}
+                            />
+                        </div>
+
+                        <div style={{ marginTop: "20px" }}>
+                            <label style={styles.label}>Phone Number</label>
+                            <input
+                                type="tel"
+                                value={pickup.phoneNumber}
+                                onChange={(e) => handleChange(index, "phoneNumber", e.target.value)}
+                                style={styles.input}
+                            />
+                        </div>
+
                         <div style={styles.inputRow}>
                             <div style={{ flex: 1 }}>
-                                <label style={styles.label} htmlFor={`customer-${index}`}>
-                                    Customer
-                                </label>
+                                <label style={styles.label}>Customer Email</label>
                                 <input
-                                    id={`customer-${index}`}
-                                    type="text"
-                                    value={pickup.customer}
+                                    type="email"
+                                    value={pickup.customerEmail}
                                     onChange={(e) =>
-                                        handleChange(index, "customer", e.target.value)
+                                        handleChange(index, "customerEmail", e.target.value)
                                     }
                                     style={styles.input}
                                 />
                             </div>
 
                             <div style={{ flex: 1 }}>
-                                <label style={styles.label}>Driver ID</label>
+                                <label style={styles.label}>Driver Email</label>
                                 <input
-                                    type="text"
-                                    value={pickup.driverID}
+                                    type="email"
+                                    value={pickup.driverEmail}
                                     onChange={(e) =>
-                                        handleChange(index, "driverID", e.target.value)
+                                        handleChange(index, "driverEmail", e.target.value)
                                     }
                                     style={styles.input}
                                 />
                             </div>
 
                             <div style={{ flex: 1 }}>
-                                <label style={styles.label}>Number of totes</label>
+                                <label style={styles.label}>Location</label>
+                                <input
+                                    type="text"
+                                    value={pickup.location}
+                                    onChange={(e) => handleChange(index, "location", e.target.value)}
+                                    style={styles.input}
+                                />
+                            </div>
+                        </div>
+
+                        <div style={styles.inputRow}>
+                            <div style={{ flex: 1 }}>
+                                <label style={styles.label}>Volume</label>
                                 <input
                                     type="number"
-                                    value={pickup.totes}
-                                    onChange={(e) => handleChange(index, "totes", e.target.value)}
+                                    value={pickup.volume}
+                                    onChange={(e) => handleChange(index, "volume", e.target.value)}
                                     style={styles.input}
+                                />
+                            </div>
+
+                            <div style={{ flex: 2 }}>
+                                <label style={styles.label}>Notes</label>
+                                <textarea
+                                    value={pickup.notes}
+                                    onChange={(e) => handleChange(index, "notes", e.target.value)}
+                                    style={{ ...styles.input, minHeight: "60px", resize: "vertical" }}
                                 />
                             </div>
                         </div>
