@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Portal } from "./Portal";
-import supabase from "../supabase/supabaseApi";
+import { createClient } from "@/lib/supabase/client";
 import { geocodeAddress } from "../utils/geocode";
+
+const supabase = createClient()
 
 interface Pickup {
     customerName: string;

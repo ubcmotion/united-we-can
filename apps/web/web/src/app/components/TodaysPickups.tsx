@@ -1,6 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import supabase from '../supabase/supabaseApi';
+import { createClient } from "@/lib/supabase/client"
+
+const supabase = createClient()
 
 interface Styles {
   mainContainer: React.CSSProperties;

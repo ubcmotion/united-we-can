@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "@/app/components/Table";
 import Image from 'next/image';
-import supabase from "../supabase/supabaseApi";
+import { createClient } from "@/lib/supabase/client";
+
+const supabase = createClient()
 
 type DriverRecord = {
     id: number;
