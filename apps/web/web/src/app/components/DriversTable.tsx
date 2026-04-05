@@ -113,11 +113,6 @@ export default function DriversTable() {
     useEffect(() => {
     const load = async () => {
         setLoading(true);
-        if (!supabase) {
-            console.error("Supabase client not configured. Skipping driver load.");
-            setLoading(false);
-            return;
-        }
         const { data, error } = await supabase
         .from('pickups')
         .select(`

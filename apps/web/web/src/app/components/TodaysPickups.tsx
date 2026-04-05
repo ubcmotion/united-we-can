@@ -61,11 +61,6 @@ export default function TodaysPickups() {
     useEffect(() => {
     const load = async () => {
         setLoading(true);
-        if (!supabase) {
-            console.error("Supabase client not configured. Skipping today's pickups load.");
-            setLoading(false);
-            return;
-        }
         const { data, error } = await supabase
         .from('pickups')
         .select(`

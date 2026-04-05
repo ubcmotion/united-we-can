@@ -118,11 +118,6 @@ export default function CustomersTable() {
     useEffect(() => {
     const load = async () => {
         setLoading(true);
-        if (!supabase) {
-            console.error("Supabase client not configured. Skipping customer load.");
-            setLoading(false);
-            return;
-        }
         const { data, error } = await supabase
         .from('pickups')
         .select(`
