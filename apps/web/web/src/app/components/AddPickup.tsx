@@ -102,6 +102,10 @@ export default function AddPickup() {
     // TODO: handle how you want to connect this to backend, for now just console logs
     const handleSubmit = async () => {
         console.log("Submitted pickups:", pickups);
+        if (!supabase) {
+            console.error("Supabase client not configured. Set NEXT_PUBLIC_SUPABASE_* env vars.");
+            return;
+        }
         const customerEmail = pickups[0]?.customerEmail;
         const customerName = pickups[0]?.customerName;
         const customerPhone = pickups[0]?.phoneNumber;
