@@ -4,6 +4,10 @@ import { Table } from "@/app/components/Table";
 import Image from 'next/image';
 import supabase from "../supabase/supabaseApi";
 
+import EditDriverView from "./EditDriverView";
+
+import { Row } from "@tanstack/react-table";
+
 type DriverRecord = {
     id: number;
     name: string;
@@ -64,27 +68,19 @@ const driverColumns = [
     {
         accessorKey: "actions",
         header: "Actions",
-        cell: () => (
-            <div>
-                <button className="px-3 py-1 text-sm">
-                    <Image
-                        src="/edit.svg"
-                        alt="Edit Driver"
-                        aria-label="Edit driver"
-                        width={20}
-                        height={30}
-                    />
-                </button>
-                <button className="px-3 py-1 text-sm">
-                    <Image
-                        src="/delete.svg"
-                        alt="Delete Driver"
-                        aria-label="Delete driver"
-                        width={20}
-                        height={30}
-                    />
-                </button>
-            </div>
+        cell: ({ row }: { row: Row<DriverRecord> }) => (
+            <div className="flex">
+            <EditDriverView driverId={row.original.id} />
+            <button className="px-3 py-1 text-sm">
+                <Image
+                    src="/delete.svg"
+                    alt="Delete Driver"
+                    aria-label="Delete driver"
+                    width={20}
+                    height={30}
+                />
+            </button>
+        </div>
         )
     },
     {
